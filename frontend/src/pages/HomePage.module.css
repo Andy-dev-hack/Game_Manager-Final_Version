@@ -1,0 +1,321 @@
+﻿.container {
+  min-height: calc(100vh - var(--header-height) - 4rem);
+  display: flex;
+  flex-direction: column; /* Stack Banner vertically */
+  align-items: center;
+  justify-content: flex-start; /* Start from top */
+  padding: 1rem;
+  position: relative;
+  gap: 2rem; /* Spacing between banner and content */
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items on mobile */
+  gap: 2rem;
+  max-width: 1280px; /* Reverted constraint */
+  width: 100%;
+}
+
+.heroCard {
+  position: relative;
+  max-width: 800px; /* Reverted constraint */
+  width: 100%;
+  padding: 2.5rem 2rem; /* Reduced padding from 4rem 3rem */
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--glass-highlight) inset;
+  text-align: center;
+  z-index: 1;
+}
+
+/* ... (rest of file) ... */
+
+/* Ultrawide Balancing removed */
+
+.widgetContainer {
+  width: 100%;
+  max-width: 600px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Desktop Layout */
+@media (min-width: 1024px) {
+  .contentWrapper {
+    flex-direction: row;
+    align-items: flex-end; /* Align bases */
+    justify-content: space-between;
+    gap: 3rem; /* Slightly reduced gap */
+  }
+
+  .heroCard {
+    flex: 1;
+    margin-top: 0;
+  }
+}
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 105px; /* Reduced by 30% from 150px */
+  height: 105px; /* Reduced by 30% from 150px */
+  margin-bottom: 1.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  border-radius: 50%;
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+  position: relative;
+}
+
+.iconWrapper::after {
+  content: "";
+  position: absolute;
+  inset: -12px; /* Adjusted scaler */
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(239, 68, 68, 0.2) 0%,
+    rgba(249, 115, 22, 0.16) 45%,
+    rgba(249, 115, 22, 0) 75%
+  );
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.heroIcon {
+  font-size: 2.5rem; /* Reduced */
+  color: white;
+}
+
+.heroIconImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35));
+}
+.title {
+  font-size: 2.75rem; /* Reduced from 3.5rem */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.1rem; /* Reduced from 1.25rem */
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem; /* Reduced */
+}
+
+.actions a {
+  text-decoration: none;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem; /* Reduced */
+  padding: 0.75rem 1.5rem; /* Reduced */
+  transition: all var(--transition-normal);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.secondaryBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+}
+
+.features {
+  display: flex;
+  gap: 1.5rem; /* Reduced */
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 1.5rem; /* Reduced */
+  border-top: 1px solid var(--glass-border);
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 100px; /* Reduced */
+}
+
+.featureIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 6rem; /* Slightly larger wrapper to accommodate glow */
+  height: 6rem;
+  background: transparent; /* Remove solid background */
+  position: relative;
+  margin-bottom: 0.5rem;
+}
+
+.featureIconWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 10%; /* Keep glow centered */
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(239, 68, 68, 0.4) 0%,
+    rgba(249, 115, 22, 0.3) 40%,
+    rgba(249, 115, 22, 0) 70%
+  );
+  filter: blur(8px); /* Softer blur for light sensation */
+  z-index: -1;
+}
+
+.featureIcon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  filter: drop-shadow(
+    0 0 8px rgba(255, 255, 255, 0.3)
+  ); /* Add subtle glow to the icon itself */
+}
+
+.featureLink {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s;
+}
+
+.featureLink:hover {
+  transform: translateY(-5px);
+}
+
+.featureText {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.feature:hover .featureText {
+  color: white;
+}
+
+.feature:hover .featureIconWrapper::after {
+  opacity: 1;
+  filter: blur(12px);
+  background: radial-gradient(
+    circle,
+    rgba(239, 68, 68, 0.6) 0%,
+    rgba(249, 115, 22, 0.5) 40%,
+    rgba(249, 115, 22, 0) 70%
+  );
+  transform: scale(1.1);
+}
+
+.featureIconWrapper {
+  transition: transform 0.3s ease;
+}
+
+.feature:hover .featureIconWrapper {
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contentWrapper {
+    gap: 2rem;
+  }
+
+  .heroCard {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .featureIconWrapper {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .iconWrapper {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+
+  .heroIcon {
+    font-size: 2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .features {
+    gap: 1rem;
+  }
+
+  .feature {
+    min-width: 165px;
+  }
+}
+
+.widgetHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-top: 2rem; /* Align visually with card content padding */
+}
+
+.widgetTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.widgetSubtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}

@@ -1,0 +1,261 @@
+/* Container */
+.container {
+  position: relative;
+}
+
+/* Avatar Button */
+.avatarButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.avatarButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.menuItemBetween {
+  justify-content: space-between;
+}
+
+.menuItemContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.subMenuContainer {
+  overflow: hidden;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--accent-primary);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.username {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 280px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px var(--glass-highlight) inset;
+  padding: 0.75rem;
+  z-index: 1000;
+}
+
+/* User Info Section */
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--accent-primary);
+}
+
+.userAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.userDetails {
+  flex: 1;
+  min-width: 0;
+}
+
+.userName {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userEmail {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0.25rem 0 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--glass-border);
+  margin: 0.5rem 0;
+}
+
+/* Menu Items */
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.menuItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.menuItem svg {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.menuItem:hover svg {
+  color: var(--accent-primary);
+}
+
+.subMenuItem {
+  padding-left: 2rem;
+  font-size: 0.85rem;
+  border-left: 2px solid var(--glass-border);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.subMenuItem:hover {
+  border-left-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.logoutItem:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.logoutItem:hover svg {
+  color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .username {
+    display: none;
+  }
+
+  .dropdown {
+    right: -0.5rem;
+    min-width: 260px;
+  }
+
+  .userInfo {
+    padding: 0.625rem;
+  }
+
+  .menuItem {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dropdown {
+    position: fixed;
+    top: auto;
+    right: 0.5rem;
+    left: 0.5rem;
+    bottom: 1rem;
+    min-width: auto;
+    width: calc(100% - 1rem);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .userInfo {
+    padding: 0.5rem;
+  }
+
+  .userName {
+    font-size: 0.9rem;
+  }
+
+  .userEmail {
+    font-size: 0.75rem;
+  }
+
+  .menuItem {
+    padding: 0.75rem 0.625rem;
+    font-size: 0.85rem;
+  }
+
+  .menuItem svg {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .dropdown {
+    right: 0.25rem;
+    left: 0.25rem;
+    width: calc(100% - 0.5rem);
+  }
+
+  .userAvatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  .menuItem {
+    gap: 0.5rem;
+  }
+}

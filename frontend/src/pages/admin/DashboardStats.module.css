@@ -1,0 +1,434 @@
+.container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* BI Grid (Premium Stats) */
+.biGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem; /* Spacing before regular KPIs */
+}
+
+.premiumCard {
+  background: rgba(20, 20, 30, 0.6);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.premiumCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Glow effects */
+.premiumCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 255, 255, 0.1),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.arpuCard {
+  background: linear-gradient(
+    145deg,
+    rgba(32, 32, 40, 0.9),
+    rgba(20, 20, 25, 0.95)
+  );
+  border-left: 4px solid #00bcd4;
+}
+
+.paretoCard {
+  background: linear-gradient(
+    145deg,
+    rgba(32, 32, 40, 0.9),
+    rgba(20, 20, 25, 0.95)
+  );
+  border-left: 4px solid #ff4081;
+}
+
+.engagementCard {
+  background: linear-gradient(
+    145deg,
+    rgba(32, 32, 40, 0.9),
+    rgba(20, 20, 25, 0.95)
+  );
+  border-left: 4px solid #ff9800; /* Orange */
+}
+
+.efficiencyCard {
+  background: linear-gradient(
+    145deg,
+    rgba(32, 32, 40, 0.9),
+    rgba(20, 20, 25, 0.95)
+  );
+  border-left: 4px solid #4caf50; /* Green */
+}
+
+.premiumContent h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #adb5bd;
+  margin-bottom: 0.5rem;
+}
+
+.premiumValue {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.premiumSub {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.5rem;
+}
+
+.premiumIcon {
+  font-size: 3rem;
+  opacity: 0.15;
+  transform: rotate(-15deg);
+}
+
+.arpuColor {
+  color: #00bcd4;
+  text-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+}
+.paretoColor {
+  color: #ff4081;
+  text-shadow: 0 0 20px rgba(255, 64, 129, 0.3);
+}
+.engagementColor {
+  color: #ff9800;
+  text-shadow: 0 0 20px rgba(255, 152, 0, 0.3);
+}
+.efficiencyColor {
+  color: #4caf50;
+  text-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+/* KPI Grid */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.kpiCard {
+  background: var(--bg-glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.2s;
+}
+
+.kpiCard:hover {
+  transform: translateY(-2px);
+}
+
+.iconWrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.green {
+  background: rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+}
+.blue {
+  background: rgba(33, 150, 243, 0.2);
+  color: #2196f3;
+}
+.purple {
+  background: rgba(156, 39, 176, 0.2);
+  color: #9c27b0;
+}
+.orange {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+}
+
+.kpiContent h3 {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.kpiContent p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+/* Details Grid */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detailsCard {
+  background: var(--bg-glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.detailsCard h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.table th {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.table td {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+/* Platform List */
+.platformList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.platformItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.platformName {
+  width: 100px;
+  color: var(--text-secondary);
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: 4px;
+}
+
+/* Top Games & Library List */
+.rankList ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rankItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.rankItem:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(4px);
+}
+
+.rankInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rankBadge {
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.rank1 {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb900 100%);
+  color: #000;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.rank2 {
+  background: linear-gradient(135deg, #e0e0e0 0%, #bdbdbd 100%);
+  color: #000;
+}
+
+.rank3 {
+  background: linear-gradient(135deg, #cd7f32 0%, #a0522d 100%);
+  color: #fff;
+}
+
+.gameName {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Updated Monthly Trends */
+.trendHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gameStats {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.soldBadge {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
+.revenueBadge {
+  font-size: 0.9rem;
+  color: #4caf50;
+  font-weight: bold;
+  background: rgba(76, 175, 80, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+}
+
+/* Updated Monthly Trends (Overrides Platform styling for trends) */
+.trendRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.trendLabel {
+  width: 80px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: monospace; /* Align numbers better */
+}
+
+.trendBarContainer {
+  flex: 1;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative; /* For tooltip or value positioning if needed */
+  display: flex;
+  align-items: center;
+}
+
+.trendBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #2196f3 0%, #64b5f6 100%);
+  border-radius: 6px;
+  min-width: 4px; /* Ensure visibility for small values */
+}
+
+.trendValueLabel {
+  width: 80px;
+  text-align: right;
+  font-weight: bold;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+}

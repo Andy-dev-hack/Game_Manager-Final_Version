@@ -1,0 +1,212 @@
+/* Container wrapper */
+.container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.hero {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+    padding: 3rem 1.5rem;
+    background: radial-gradient(circle at center, rgba(30, 41, 59, 0.5) 0%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        padding: 5rem 2rem;
+        margin-bottom: 3rem;
+    }
+}
+
+.introContent {
+    width: 100%;
+    max-width: 800px;
+}
+
+.title {
+    /* Fluid typography: 2rem on mobile -> 3.5rem on desktop */
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Sticky Pagination Wrapper */
+.stickyPaginationWrapper {
+    position: sticky;
+    top: calc(var(--header-height) + 1rem); /* Below navbar */
+    z-index: 10;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.stickyPagination {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(15, 23, 42, 0.85); /* Dark glassmorphism - original blue */
+    backdrop-filter: blur(12px);
+    border-radius: 12px; /* Reduced radius */
+    max-width: fit-content;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    transition: all var(--transition-fast);
+    z-index: 1;
+}
+
+/* Gradient border using pseudo-element */
+.stickyPagination::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px; /* Match parent */
+    padding: 1px; /* Border width */
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.stickyPagination:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 40px rgba(249, 115, 22, 0.4);
+}
+
+.grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    /* Smart Grid: Adapts to available width, min card width 280px */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem 4rem 1rem; /* Revert padding */
+    width: 100%;
+    max-width: 1280px; /* Revert constraint */
+    margin: 0 auto;
+}
+
+/* On very small screens, allow 1 column naturally via minmax, 
+   but ensure it doesn't overflow */
+@media (max-width: 380px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Page Numbers (used in sticky pagination) */
+.pageNumbers {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pageButton {
+    min-width: 24px;
+    height: 24px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pageButton:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.pageButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pageButtonActive {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.ellipsis {
+    color: var(--text-muted);
+    padding: 0 0.5rem;
+    font-weight: 600;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+    .stickyPaginationWrapper {
+        top: calc(var(--header-height) + 0.5rem);
+    }
+
+    .stickyPagination {
+        padding: 0.75rem 1rem;
+        gap: 0.75rem;
+    }
+
+    .pageNumbers {
+        gap: 0.35rem;
+    }
+
+    .pageButton {
+        min-width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+}
+
+.contentWrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.loadingState,
+.errorState,
+.emptyState {
+    text-align: center;
+    padding: 4rem;
+}
+
+.loadingText {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.errorState {
+    color: var(--error);
+}
+
+.emptyState {
+    color: var(--text-muted);
+}

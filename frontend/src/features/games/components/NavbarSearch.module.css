@@ -1,0 +1,190 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Match dropdown min-width for stability */
+  z-index: 50;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 2.5rem; /* Space for search icon and clear button */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2); /* Orange glow */
+}
+
+.icon {
+  position: absolute;
+  left: 0.85rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  font-size: 1.1rem;
+}
+
+.clearButton {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+}
+
+.clearButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+/* Dropdown Results */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0; /* Align to left edge of container */
+  right: 0; /* Stretch to right edge */
+  width: 100%; /* Full width of container */
+  min-width: 600px; /* Minimum width for content */
+  max-width: 90vw; /* Responsive on small screens */
+  max-height: 500px; /* Increased height for more results */
+  background: rgba(15, 23, 42, 0.98); /* Deep dark blue */
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  overflow-y: auto; /* Allow scrolling if many results */
+  animation: fadeIn 0.2s ease-out;
+  z-index: 100; /* Ensure it's above other content */
+}
+
+.resultItem {
+  display: flex;
+  align-items: flex-start; /* Align to top for better layout */
+  gap: 1rem;
+  padding: 1rem; /* More padding for larger content */
+  text-decoration: none;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background var(--transition-fast);
+  cursor: pointer;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItem:hover,
+.active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.resultImage {
+  width: 64px; /* Larger thumbnail */
+  height: 85px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background: var(--bg-secondary);
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.resultInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem; /* More spacing between info lines */
+  flex: 1;
+  min-width: 0; /* Allow text truncation */
+}
+
+.resultTitle {
+  font-weight: 600;
+  font-size: 1rem; /* Slightly larger title */
+  color: var(--text-primary);
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem; /* Slightly larger for readability */
+  color: var(--text-muted);
+  flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+.resultPrice {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.resultDeveloper {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultDate {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.viewAll {
+  display: block;
+  text-align: center;
+  padding: 0.85rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+
+.viewAll:hover,
+.viewAll.active {
+  background: rgba(249, 115, 22, 0.15);
+}
+
+.noResults {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

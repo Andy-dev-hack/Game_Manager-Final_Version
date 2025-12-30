@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  # Backend Service (The Node.js App)
+  backend:
+    build: .
+    ports:
+      - "3500:3500"
+    environment:
+      - PORT=3500
+      - MONGO_URI=mongodb://mongo:27017/gamemanager
+      - JWT_SECRET=supersecretkey_dev_only
+      - NODE_ENV=development
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  # Database Service (MongoDB)
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+  # Database UI (Mongo Express) - Optional but helpful
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

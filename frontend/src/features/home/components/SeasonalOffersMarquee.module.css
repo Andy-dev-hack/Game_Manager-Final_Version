@@ -1,0 +1,148 @@
+.marqueeContainer {
+    width: 100%;
+    margin-bottom: 3rem;
+    background: linear-gradient(90deg, rgba(185, 28, 28, 0.85), rgba(21, 128, 61, 0.85));
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 215, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column; /* Stack Title + Track */
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+.seasonalTitle {
+    font-family: "Mountains of Christmas", cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Margin handled by container padding */
+}
+
+.viewAllBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1.5rem;
+    border-radius: 999px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+}
+
+.viewAllBtn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.trackWrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    /* Mask to fade edges potentially, or just clean cut */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+.marqueeTrack {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    padding-left: 1rem;
+    /* Manual transform handled by React */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* Hardware acceleration */
+    will-change: transform;
+}
+
+/* Navigation Buttons */
+.navButton {
+    position: absolute;
+    top: 55%; /* Slightly adjusted due to header */
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    font-size: 1.5rem;
+    opacity: 0;
+}
+
+.marqueeContainer:hover .navButton {
+    opacity: 1;
+}
+
+.navButton:hover {
+    background: rgba(249, 115, 22, 0.9);
+    border-color: transparent;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+.prevButton {
+    left: 1rem;
+}
+
+.nextButton {
+    right: 1rem;
+}
+
+@media (max-width: 768px) {
+    .navButton {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+        opacity: 1;
+    }
+}
+
+/* Pause animation when hovering over any card */
+.marqueeTrack:has(.seasonalCard:hover) {
+    animation-play-state: paused;
+}
+
+.seasonalCard {
+    /* Override default card background to ensure blending with marquee */
+    /* We keep standard glass effect but control dimensions */
+    background: rgba(255, 255, 255, 0.1) !important;
+    /* Fixed dimensions as requested */
+    min-width: 320px;
+    max-width: 320px;
+    height: 520px; /* Increased to accommodate all content without clipping */
+    flex-shrink: 0;
+}
+
+.seasonalCard:hover {
+    /* Add specific Winter Gold Glow on top of standard hover */
+    transform: translateY(-5px) scale(1.02) !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5) !important; /* Gold glow */
+    border-color: rgba(255, 215, 0, 0.6) !important;
+}

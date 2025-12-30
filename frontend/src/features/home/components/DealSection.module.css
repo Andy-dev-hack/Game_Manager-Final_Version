@@ -1,0 +1,141 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem; /* Increased gap for stacked layout */
+    margin: 3rem 0;
+    width: 100%;
+}
+
+.dealColumn {
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative; /* Context for children */
+}
+
+.flashColumn {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flashTitle {
+    color: var(--bg-primary) !important; /* Dark Blue text */
+    text-shadow: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.link:hover {
+    color: var(--text-primary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    min-height: 500px;
+    align-items: start;
+    /* Performance optimizations for smooth animations */
+    contain: layout style paint;
+}
+
+/* Ensure all grid items (cards) have uniform height and GPU acceleration */
+.grid > * {
+    height: 480px;
+    /* GPU acceleration for smooth animations */
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Response handling for smaller screens inside the Deal Columns */
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* On very small screens (mobile), stack everything */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Navigation Buttons */
+.navButton {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+    font-size: 1.5rem;
+    opacity: 0;
+}
+
+.dealColumn:hover .navButton {
+    opacity: 1;
+}
+
+.navButton:hover {
+    background: rgba(249, 115, 22, 0.9);
+    border-color: transparent;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+.prevButton {
+    left: 1rem;
+}
+
+.nextButton {
+    right: 1rem;
+}
+
+@media (max-width: 768px) {
+    .navButton {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+        opacity: 1;
+    }
+}

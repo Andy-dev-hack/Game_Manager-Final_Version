@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 3rem 0;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 3rem; /* Spacing before Deals */
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.icon {
+  font-size: 2rem;
+  color: var(--accent-primary); /* Default icon color */
+  margin-bottom: 0.5rem;
+  transition: transform var(--transition-normal);
+}
+
+/* Unified Hover Effects */
+.statItem:hover .icon {
+  transform: scale(1.1);
+  color: var(--accent-secondary);
+}
+
+.number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary) 30%,
+    var(--text-secondary) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  transition: all var(--transition-normal);
+}
+
+.statItem:hover .number {
+  background: linear-gradient(
+    to right,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.1); /* Matched to Icon */
+}
+
+.label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  transition: all var(--transition-normal); /* Changed to all for transform */
+}
+
+.statItem:hover .label {
+  background: linear-gradient(
+    to right,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  transform: scale(1.1); /* Matched to Icon */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 2rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .number {
+    font-size: 2.5rem;
+  }
+}

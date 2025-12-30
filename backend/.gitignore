@@ -1,0 +1,57 @@
+# Dependencias
+node_modules/
+# package-lock.json NO se ignora, se debe subir para asegurar versiones.
+
+# Variables de entorno (¡Muy importante!)
+.env
+.env.test
+.env.production
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Sistema Operativo (Evita archivos basura de Mac/Windows)
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs y Editores (Configuraciones personales de cada desarrollador)
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de subida (Contenido generado dinámicamente)
+uploads/
+# data/*.json # 'data/games.json' se comparte como Seed Data.
+
+# Build (Cada dev debe generar su propio build)
+dist/
+build/
+out/
+
+# Testing
+coverage/
+test_output.txt
+junit.xml
+
+# Docker
+# ¡NO ignorar .dockerignore! Es esencial para el build.
+# .dockerignore
+
+# AI
+ai/
+
+# docs
+docs/

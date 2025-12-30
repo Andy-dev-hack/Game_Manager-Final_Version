@@ -1,0 +1,99 @@
+.container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 550px; /* Increased per user request */
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+  padding-left: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scrollContainer {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.track {
+  animation: scroll 30s linear infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* .row style removed */
+
+.gameCard {
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.2s;
+  aspect-ratio: 16/9;
+  position: relative;
+}
+
+.gameCard:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.gameImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gameOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.gameCard:hover .gameOverlay {
+  opacity: 1;
+}
+
+.gameTitle {
+  font-size: 0.75rem;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,56 @@
+# Dependencies
+node_modules
+# package-lock.json is NOT ignored (good for deterministic builds)
+
+# Build & Output
+dist
+coverage
+tests
+test_output.txt
+junit.xml
+
+# Version Control & Metadata
+.git
+.gitignore
+README.md
+
+# Environment (Secrets)
+.env
+.env.test
+.env.production
+.env.local
+.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+
+# Documentation (Not needed in prod image)
+docs
+ai
+
+# Docker itself (Except when context requires it, but usually safe to ignore if copying specific files)
+Dockerfile
+docker-compose.yml
+
+# OS Junk (Mac/Windows)
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
