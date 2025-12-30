@@ -92,9 +92,9 @@ Create a `.env` file in the root (you can copy `.env.example` if it exists):
 
 ```env
 PORT=3500
-MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/db
-JWT_SECRET=your_super_secure_secret_key
-RAWG_API_KEY=your_rawg_api_key
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/<db_name>
+JWT_SECRET=<YOUR_JWT_SECRET>
+RAWG_API_KEY=<YOUR_RAWG_API_KEY>
 NODE_ENV=development
 ```
 
