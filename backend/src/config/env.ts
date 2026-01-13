@@ -39,7 +39,9 @@ const getEnv = (key: string, defaultValue?: string): string => {
 export const PORT: string | number = process.env.PORT || 3500;
 
 // Database Configuration
-export const MONGO_URI: string = getEnv("MONGODB_URI", process.env.MONGO_URI);
+// Prioritize MONGO_URI (Docker standard) over MONGODB_URI (Atlas/Local fallback)
+export const MONGO_URI: string =
+  process.env.MONGO_URI || process.env.MONGODB_URI || "";
 
 // Authentication Configuration
 export const JWT_SECRET: string = getEnv("JWT_SECRET");

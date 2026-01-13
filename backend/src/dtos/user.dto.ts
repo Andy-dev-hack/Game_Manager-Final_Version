@@ -5,6 +5,7 @@
  */
 
 import { Types } from "mongoose";
+import { IGame } from "../models/game.model";
 
 /**
  * Interface for Wishlist Response
@@ -39,4 +40,17 @@ export interface PaginatedUsersDto {
   total: number;
   page: number;
   totalPages: number;
+}
+
+/**
+ * Interface for Paginated Wishlist Response (Populated)
+ */
+export interface PaginatedWishlistDto {
+  data: IGame[];
+  pagination: {
+    total: number;
+    pages: number;
+    page: number;
+    limit: number;
+  };
 }

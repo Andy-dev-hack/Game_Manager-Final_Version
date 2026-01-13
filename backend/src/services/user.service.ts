@@ -9,7 +9,7 @@ import mongoose, { Types } from "mongoose";
 import User from "../models/user.model";
 import Game, { IGame } from "../models/game.model";
 import { AppError } from "../utils/AppError";
-import { WishlistResponseDto } from "../dtos/user.dto";
+import { WishlistResponseDto, PaginatedWishlistDto } from "../dtos/user.dto";
 
 /**
  * Adds a game to the user's wishlist.
@@ -98,7 +98,7 @@ export const removeFromWishlist = async (
  * @param platform - Filter by platform
  * @param sortBy - Sort field (default: 'title')
  * @param order - Sort order (default: 'asc')
- * @returns {Promise<any>} Paginated wishlist with pagination metadata
+ * @returns {Promise<PaginatedWishlistDto>} Paginated wishlist with pagination metadata
  * @throws {AppError} If user not found
  */
 export const getWishlist = async (
@@ -110,7 +110,7 @@ export const getWishlist = async (
   platform?: string,
   sortBy?: string,
   order?: "asc" | "desc"
-): Promise<any> => {
+): Promise<PaginatedWishlistDto> => {
   const user = await User.findById(userId);
   if (!user) {
     throw new AppError("User not found", 404);
@@ -156,7 +156,7 @@ export const getWishlist = async (
 
   // Return format matching Catalog pattern
   return {
-    data: paginatedUser?.wishlist || [],
+    data: (paginatedUser?.wishlist as unknown as IGame[]) || [],
     pagination: {
       total,
       pages: totalPages,

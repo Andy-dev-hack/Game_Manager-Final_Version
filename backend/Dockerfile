@@ -1,5 +1,5 @@
-# Use official Node.js Alpine image (Lightweight)
-FROM node:18-alpine
+# Use official Node.js Alpine image (LTS)
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
@@ -18,7 +18,7 @@ RUN npm run build
 
 # Prune dev dependencies to keep image small (Optional, but recommended for prod)
 # Note: We keep 'dependencies' needed for runtime
-RUN npm prune --production
+# RUN npm prune --production
 
 # Expose the API port
 EXPOSE 3500

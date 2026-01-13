@@ -99,11 +99,22 @@ We maintain detailed documentation for the codebase. Please review these files t
    VITE_API_URL=http://localhost:3000/api
    ```
 
-4. **Run Development Server**
+4. **Run Development Server (Hybrid Mode)** - _Recommended_
+
+   The best way to develop is using the **Hybrid Workflow**:
+
+   - Backend & DB running in Docker (Root).
+   - Frontend running locally for Hot Module Replacement (HMR).
+
    ```bash
+   # 1. Start Backend (from project root)
+   docker compose up backend mongo -d
+
+   # 2. Start Frontend (here)
    npm run dev
    ```
-   Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+   Open [http://localhost:5173](http://localhost:5173). It will automatically connect to your Docker backend!
 
 ---
 

@@ -330,6 +330,31 @@ flowchart LR
 
 ---
 
+## 🏗️ Infrastructure & Deployment
+
+### Containerization (Docker)
+
+The backend runs in a standardized containerized environment:
+
+- **Base Image**: `node:20-alpine` (Security & Performance).
+- **Security**: Runs as non-root user (Standard practice).
+- **Dependencies**: Only production deps in final image (`npm ci --only=production`).
+
+### Environment Management
+
+We prioritize **Fail-Fast** configuration:
+
+1.  **Docker Compose**: Injects `MONGO_URI` and `NODE_ENV`.
+2.  **`src/config/env.ts`**: Validates presence of keys on startup using Zod.
+    - _If `MONGO_URI` is missing, the container crashes immediately with a descriptive error._
+
+### Database Connectivity
+
+- **Connection Pooling**: Mongoose manages a pool of connections for high throughput.
+- **Mongo Express**: A web-based admin GUI is deployed alongside for easier debugging (`http://localhost:8081`).
+
+---
+
 ## 📂 Project Structure
 
 Navigation map for developers:

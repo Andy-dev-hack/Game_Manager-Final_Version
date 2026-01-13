@@ -6,6 +6,7 @@
  */
 import mongoose from "mongoose";
 import logger from "../utils/logger";
+import { MONGO_URI } from "./env";
 
 /**
  * connectDB
@@ -24,10 +25,7 @@ const connectDB = async (): Promise<void> => {
       options.dbName = "game-manager-test";
     }
 
-    const conn = await mongoose.connect(
-      process.env.MONGODB_URI as string,
-      options
-    );
+    const conn = await mongoose.connect(MONGO_URI, options);
 
     /**
      * Security Checks

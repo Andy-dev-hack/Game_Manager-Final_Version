@@ -1,0 +1,41 @@
+# Dependencies
+node_modules
+
+# Build & Output
+dist
+coverage
+test_output.txt
+
+# Version Control & Metadata
+.git
+.gitignore
+README.md
+
+# Environment (Secrets)
+.env
+.env.test
+.env.production
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Documentation & AI
+docs
+AI
+codemod
+
+# OS Junk
+.DS_Store
+.DS_Store?
+._*
+
+# Editors
+.idea/
+.vscode/
+
+# Docker
+Dockerfile

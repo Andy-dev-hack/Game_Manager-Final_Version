@@ -138,6 +138,14 @@ export const searchGames = async (query: string, limit = 10) => {
   }
 };
 
+// Interface for simplified game objects used in lists/scripts
+export interface RAWGGameBasic {
+  rawgId: number;
+  title: string;
+  metacritic?: number;
+  released?: string;
+}
+
 /**
  * Fetch popular PC games from RAWG
  * Destination: Used by import-pc-games.ts script.
@@ -150,13 +158,13 @@ export const fetchPopularPCGames = async (
 ) => {
   const genreKey = genres ? `:${genres}` : "";
   const cacheKey = `popular_pc:${page}:${pageSize}${genreKey}`;
-  const cachedData = rawgCache.get(cacheKey);
+  const cachedData = rawgCache.get<RAWGGameBasic[]>(cacheKey);
 
   if (cachedData) {
     logger.info(
       `Serving popular PC games from cache (Page ${page} ${genreKey})`
     );
-    return cachedData as any[];
+    return cachedData;
   }
 
   try {
@@ -179,11 +187,13 @@ export const fetchPopularPCGames = async (
       params,
     });
 
-    const results = response.data.results.map((game: RAWGGameListItem) => ({
-      rawgId: game.id,
-      title: game.name,
-      // Minimal data for list, full details fetched later
-    }));
+    const results: RAWGGameBasic[] = response.data.results.map(
+      (game: RAWGGameListItem) => ({
+        rawgId: game.id,
+        title: game.name,
+        // Minimal data for list, full details fetched later
+      })
+    );
 
     rawgCache.set(cacheKey, results, 3600); // 1 hour cache
     return results;
@@ -204,11 +214,11 @@ export const fetchTopGames = async (
   pageSize = 40
 ) => {
   const cacheKey = `top_games:${startDate}:${endDate}:${page}:${pageSize}`;
-  const cachedData = rawgCache.get(cacheKey);
+  const cachedData = rawgCache.get<RAWGGameBasic[]>(cacheKey);
 
   if (cachedData) {
     logger.info(`Serving top games from cache (Page ${page})`);
-    return cachedData as any[];
+    return cachedData;
   }
 
   try {
@@ -221,12 +231,14 @@ export const fetchTopGames = async (
 
     const response = await rawgClient.get("/games", { params });
 
-    const results = response.data.results.map((game: RAWGGameListItem) => ({
-      rawgId: game.id,
-      title: game.name,
-      metacritic: game.metacritic,
-      released: game.released,
-    }));
+    const results: RAWGGameBasic[] = response.data.results.map(
+      (game: RAWGGameListItem) => ({
+        rawgId: game.id,
+        title: game.name,
+        metacritic: game.metacritic,
+        released: game.released,
+      })
+    );
 
     rawgCache.set(cacheKey, results, 3600);
     return results;

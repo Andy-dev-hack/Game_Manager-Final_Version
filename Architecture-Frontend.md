@@ -247,6 +247,41 @@ flowchart LR
 
 ---
 
+## 🏗️ Infrastructure & Deployment
+
+### Dockerized Serving (Nginx)
+
+The frontend is deployed as a static artifact using a **Multi-Stage Docker Build**:
+
+1.  **Build Stage**: `node:18` compiles React to static HTML/JS/CSS (`/dist`).
+2.  **Serving Stage**: `nginx:alpine` serves the static files.
+
+### Reverse Proxy Configuration
+
+To solve CORS and simplify networking, **Nginx** acts as a Reverse Proxy:
+
+- `/*` -> Serves React App (`index.html`)
+- `/api/*` -> Forwards requests to Backend Container (`http://backend:3500`)
+
+**Benefits**:
+
+- **Zero CORS Issues**: Browser sees same-origin requests.
+- **Production Ready**: High performance static file serving.
+- **Clean URLs**: No port 3500 visible to the client.
+
+```mermaid
+graph LR
+    Browser(["A Browser"])
+    Nginx[("B Nginx (Frontend)")];
+    Backend[("C Backend API")];
+
+    Browser -- "GET /" --> Nginx
+    Browser -- "GET /api/games" --> Nginx
+    Nginx -- "Proxy Pass" --> Backend
+```
+
+---
+
 ## 📂 Project Structure
 
 Hierarchical visualization of main components:

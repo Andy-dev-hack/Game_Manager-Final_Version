@@ -1,11 +1,29 @@
 version: "3.8"
 
 services:
-  # Backend Service (The Node.js App)
+  # Frontend Service (React + Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=/api
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - game-cluster
+
+  # Backend Service (Node.js API)
   backend:
-    build: .
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "3500:3500"
+    env_file:
+      - ./backend/.env
     environment:
       - PORT=3500
       - MONGO_URI=mongodb://mongo:27017/gamemanager
@@ -14,7 +32,7 @@ services:
     depends_on:
       - mongo
     networks:
-      - app-network
+      - game-cluster
 
   # Database Service (MongoDB)
   mongo:
@@ -24,7 +42,7 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - app-network
+      - game-cluster
 
   # Database UI (Mongo Express) - Optional but helpful
   mongo-express:
@@ -34,13 +52,15 @@ services:
     environment:
       - ME_CONFIG_MONGODB_SERVER=mongo
       - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_BASICAUTH_USERNAME=devadmin
+      - ME_CONFIG_BASICAUTH_PASSWORD=securepass123
     depends_on:
       - mongo
     networks:
-      - app-network
+      - game-cluster
 
 networks:
-  app-network:
+  game-cluster:
     driver: bridge
 
 volumes:

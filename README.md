@@ -31,28 +31,40 @@ graph LR
 
 ## 🚀 How to Run
 
-To run the full application locally, you need to start **both** the backend and frontend servers in separate terminal instances.
+### 1. Docker Quick Start (Recommended)
 
-### 1. Start the Backend
+Run the entire stack (Frontend + Backend + DB) with a single command:
 
-Open your first terminal:
+```bash
+docker compose up
+```
+
+- **Frontend**: [http://localhost](http://localhost)
+- **Backend**: [http://localhost:3500](http://localhost:3500)
+- **Database**: [http://localhost:8081](http://localhost:8081) (Mongo Express)
+
+---
+
+### 2. Manual Development (Legacy)
+
+If you need to run services individually without Docker:
+
+**Terminal 1 (Backend)**:
 
 ```bash
 cd backend
 npm install
 npm run dev
-# Server will start on http://localhost:3500
+# Server: http://localhost:3500
 ```
 
-### 2. Start the Frontend
-
-Open a second terminal:
+**Terminal 2 (Frontend)**:
 
 ```bash
 cd frontend
 npm install
 npm run dev
-# App will open on http://localhost:5173
+# App: http://localhost:5173
 ```
 
 ---

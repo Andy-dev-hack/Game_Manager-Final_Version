@@ -98,7 +98,15 @@ RAWG_API_KEY=<YOUR_RAWG_API_KEY>
 NODE_ENV=development
 ```
 
-### 4. Execution
+### 4. Docker (Recommended)
+
+Run the entire stack (Backend + Database) from the project root:
+
+```bash
+docker compose up backend mongo -d
+```
+
+### 5. Manual Execution (npm)
 
 | Command         | Description                                              |
 | :-------------- | :------------------------------------------------------- |

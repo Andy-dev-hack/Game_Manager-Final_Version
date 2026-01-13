@@ -4,14 +4,11 @@
  * Reads from data/games.json and upserts into the database.
  */
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import fs from "fs-extra";
 import path from "path";
 import Game from "../models/game.model";
 import connectDB from "../config/db";
 import logger from "../utils/logger";
-
-dotenv.config();
 
 const seedGames = async () => {
   try {

@@ -85,7 +85,12 @@ apiClient.interceptors.response.use(
         // Attempt to refresh the access token
         // Log removal for poduction
         // Log removal for poduction
-        const { data } = await axios.post("/api/users/refresh-token", {
+        // Use configured Base URL for refresh request
+        const baseURL = import.meta.env.DEV
+          ? "/api"
+          : import.meta.env.VITE_API_URL || "/api";
+
+        const { data } = await axios.post(`${baseURL}/users/refresh-token`, {
           token: refreshToken,
         });
 
